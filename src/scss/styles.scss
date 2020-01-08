@@ -27,12 +27,20 @@ div.frame {
   }
 
   .table {
-    width: 150px;
-    height: 110px;
+    width: 109px;
+    height: 134px;
     position: absolute;
     top: 100px;
     left: 1000px;
-    background-image: url("/images/BrownTable-ConvertImage.png");
+    background-image: url("/images/SmallTable&Character1.png");
+  }
+  .men {
+    width: 128px;
+    height: 220px;
+    background-image: url("/images/RightCharacter.png");
+    position: absolute;
+    top: 250px;
+    left: 1000px;
   }
 }
 

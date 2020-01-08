@@ -1,22 +1,6 @@
 let beer;
 
-function move() {
-  let mousedownTime;
-  var arrow = document.querySelector(".arrow");
-  // calcule le temps que l'on reste appuyer sur la souris
-  beer.addEventListener("mousedown", () => {
-    mousedownTime = new Date().getTime();
-  });
-  beer.addEventListener("mouseup", function() {
-    const mouseupTime = new Date().getTime(),
-      timeDifference = (mouseupTime - mousedownTime) / 2; // transforme le temps d'appui en pixels
-    oxo.animation.move(beer, "up", timeDifference, true);
-    console.log(timeDifference);
-    console.log();
-  });
-
-  // collision();
-}
+function move() {}
 
 function resetBeerPosition() {
   var beer = document.querySelector(".beer");
@@ -46,14 +30,6 @@ function createtable(x, y) {
     appendTo: ".frame"
   });
 }
-// function moveTable() {
-//   setInterval(() => {
-//     var tables = document.querySelectorAll(".table");
-//     for (i = 0; i < tables.length; i++) {
-//       oxo.animation.move(tables[i], "left", 10, true);
-//     }
-//   }, 60);
-// }
 
 function addTable() {
   let table = createtable(100, 900);
@@ -78,26 +54,75 @@ function addTable() {
   );
 }
 
+function createMen(x, y) {
+  return oxo.elements.createElement({
+    type: "div",
+    class: "men",
+    obstacle: true,
+    styles: {
+      position: "absolute",
+      top: x + "px",
+      left: y + "px"
+    },
+    appendTo: ".frame"
+  });
+}
+function addMen() {
+  let men = createMen(280, 920);
+
+  oxo.elements.onCollisionWithElement(beer, men, function() {
+    touch = true;
+    resetBeerPosition();
+    removeScorePoint();
+  });
+
+  let moveIntervalMen = setInterval(function() {
+    oxo.animation.move(men, "left", 10, true);
+  }, 30);
+
+  oxo.elements.onLeaveScreenOnce(
+    men,
+    function() {
+      men.remove();
+      clearInterval(moveIntervalMen);
+    },
+    true
+  );
+}
+
 // add 5 point score when beer touch table
 function addScorePoint() {
   oxo.player.addToScore(5);
 }
+// remove 2 point score when beer touch men
+function removeScorePoint() {
+  oxo.player.removeFromScore(2);
+}
 
 function game() {
   beer = document.querySelector(".beer");
+  let mousedownTime;
 
-  move();
-  //createtable(100, 500);
-  //createtable(100, 1500);
-  //createtable(100, 2000);
-  //moveTable();
+  setInterval(() => {
+    resetBeerPosition();
+  }, 2000);
+
+  beer.addEventListener("mousedown", () => {
+    mousedownTime = new Date().getTime();
+  });
+  beer.addEventListener("mouseup", function() {
+    const mouseupTime = new Date().getTime(),
+      timeDifference = (mouseupTime - mousedownTime) / 2; // transforme le temps d'appui en pixels
+    oxo.animation.move(beer, "up", timeDifference, true);
+  });
 
   ifLeaveScreen();
   setInterval(addTable, 3000);
+
+  ifLeaveScreen();
+  setInterval(addMen, 2000);
 }
 
 // oxo.inputs.listenKeyOnce("enter", function() {
-oxo.screens.loadScreen("game", function() {
-  game();
-});
+oxo.screens.loadScreen("game", game);
 // });
