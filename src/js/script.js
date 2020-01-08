@@ -123,6 +123,7 @@ function game() {
   setInterval(addMen, 2000);
 }
 
-// oxo.inputs.listenKeyOnce("enter", function() {
+oxo.inputs.listenKeyOnce("enter", function() {
 oxo.screens.loadScreen("game", game);
-// });
+});
+
