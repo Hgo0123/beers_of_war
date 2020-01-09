@@ -1,6 +1,23 @@
 let beer;
+let live = 5;
 
-function move() {}
+function move() {
+  let mousedownTime;
+
+  beer.addEventListener("mousedown", () => {
+    mousedownTime = new Date().getTime();
+  });
+  beer.addEventListener("mouseup", function() {
+    const mouseupTime = new Date().getTime(),
+      timeDifference = (mouseupTime - mousedownTime) / 2; // transforme le temps d'appui en pixels
+    if (timeDifference > 520) {
+      oxo.animation.move(beer, "up", 520, true);
+    } else {
+      oxo.animation.move(beer, "up", timeDifference, true);
+    }
+    console.log(timeDifference);
+  });
+}
 
 function resetBeerPosition() {
   var beer = document.querySelector(".beer");
@@ -24,6 +41,16 @@ function addSoundOrder() {
 function addSoundImpact() {
   soundImpact = document.getElementById("impact");
   soundImpact.play();
+}
+function removeLive() {
+  let hearts = document.querySelector(".divHeart");
+  live--;
+  hearts.removeChild(hearts.childNodes[0]);
+  console.log(hearts);
+
+  // if (hearts.childElementCount === 4) {
+  //   // oxo.screens.loadScreen("end");
+  // }
 }
 
 function createtable(x, y) {
@@ -85,11 +112,11 @@ function addMen() {
     resetBeerPosition();
     removeScorePoint(5);
     addSoundImpact();
-    
+    removeLive();
   });
 
   let moveIntervalMen = setInterval(function() {
-    oxo.animation.move(men, "left", 20, true);
+    oxo.animation.move(men, "left", 13, true);
   }, 40);
 
   oxo.elements.onLeaveScreenOnce(
@@ -117,33 +144,21 @@ function score() {
 
 function game() {
   beer = document.querySelector(".beer");
-  let mousedownTime;
-
+  move();
   setInterval(() => {
     resetBeerPosition();
   }, 1000);
-
-  beer.addEventListener("mousedown", () => {
-    mousedownTime = new Date().getTime();
-  });
-  beer.addEventListener("mouseup", function() {
-    const mouseupTime = new Date().getTime(),
-      timeDifference = (mouseupTime - mousedownTime) / 2; // transforme le temps d'appui en pixels
-    if (timeDifference > 520) {
-      oxo.animation.move(beer, "up", 520, true);
-    } else {
-      oxo.animation.move(beer, "up", timeDifference, true);
-    }
-    console.log(timeDifference);
-  });
 
   ifLeaveScreen();
   setInterval(addTable, 3000);
 
   ifLeaveScreen();
-  setInterval(addMen, 1000);
+  setInterval(() => {
+    addMen();
+  }, 1000);
 }
 
 oxo.inputs.listenKeyOnce("enter", function() {
   oxo.screens.loadScreen("game", game);
 });
+// oxo.screens.loadScreen("end");

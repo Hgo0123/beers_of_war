@@ -69,6 +69,18 @@ div.frame {
   top: 10px;
   left: 20px;
 }
+.divHeart {
+  display: flex;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.heart {
+  background-image: url("/images/lifeHeart.png");
+  width: 35px;
+  height: 33px;
+  margin-left: 10px;
+}
 
 // HOME.html
 
@@ -129,5 +141,30 @@ div.frame {
     top: 380px;
     left: 680px;
     font-size: 30px;
+  }
+}
+// END PAGE
+.end {
+  width: 960px;
+  height: 600px;
+  border: 5px solid black;
+  margin: auto;
+  margin-top: 50px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h1 {
+    color: #fab610;
+    font-family: "venture";
+    font-size: 90px;
+    text-align: center;
+    -webkit-text-stroke: 3px black;
+  }
+  img {
+    width: 300px;
+    height: 300px;
   }
 }
