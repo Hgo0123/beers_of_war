@@ -48,9 +48,9 @@ function removeLive() {
   hearts.removeChild(hearts.childNodes[0]);
   console.log(hearts);
 
-  // if (hearts.childElementCount === 4) {
-  //   // oxo.screens.loadScreen("end");
-  // }
+  if (hearts.childElementCount === 4) {
+    oxo.screens.loadScreen("end");
+  }
 }
 
 function createtable(x, y) {
@@ -161,4 +161,9 @@ function game() {
 oxo.inputs.listenKeyOnce("enter", function() {
   oxo.screens.loadScreen("game", game);
 });
-// oxo.screens.loadScreen("end");
+
+// document.querySelector(".divHeart .heart" + `${i}`);
+// function getScore() {
+//   score = document.querySelector(".score");
+//   oxo.player.getScore();
+// }

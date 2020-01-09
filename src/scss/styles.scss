@@ -144,27 +144,72 @@ div.frame {
   }
 }
 // END PAGE
+html {
+  background-color: white;
+}
 .end {
   width: 960px;
   height: 600px;
-  border: 5px solid black;
+  border: 1px solid black;
   margin: auto;
   margin-top: 50px;
   overflow: hidden;
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #222222;
+  position: relative;
 
   h1 {
-    color: #fab610;
+    margin-top: 30px;
+    color: white;
     font-family: "venture";
     font-size: 90px;
     text-align: center;
     -webkit-text-stroke: 3px black;
   }
+  .scoreEnd {
+    font-family: "vcr";
+    color: white;
+    font-size: 26px;
+    margin: 20px;
+    display: flex;
+    p {
+      margin-left: 20px;
+    }
+  }
   img {
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
+  }
+
+  .restart {
+    font-family: "vcr";
+    background: #fab610;
+    border: 3px solid #ffffff;
+    margin-top: 20px;
+    width: 250px;
+    height: 100px;
+    border-radius: 8px;
+    position: relative;
+
+    p {
+      text-transform: uppercase;
+      font-size: 20px;
+      line-height: 28px;
+      text-align: center;
+      position: absolute;
+      top: 20px;
+    }
+  }
+  .credits {
+    text-decoration: underline;
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+    color: white;
+    font-family: "vcr";
+    color: white;
+    font-size: 22px;
   }
 }
