@@ -319,19 +319,42 @@ html {
 
 //howtoplay.html
 
+.frame__howto {
+  width: 960px;
+  height: 600px;
+  background-color: white;
+  border: 2px solid #222222;
+  margin: auto;
+  margin-top: 50px;
+  overflow: hidden;
+  position: relative;
+  .howtoplay {
+    color: #fab610;
+    font-family: "venture";
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    font-size: 86px;
+    text-align: center;
+  }
+  .consigne {
+    font-family: "vcr";
+    font-size: 26px;
+    line-height: 39px;
+    color: #222222;
+    position: absolute;
+    top: 175px;
+    left: 50px;
+    width: 800px;
+    span {
+      color: #fab610;
+    }
+  }
+}
 .souris {
   position: absolute;
-  left: 750px;
-  top: 240px;
+  left: 800px;
+  top: 400px;
   width: 150px;
-}
-.howtoplay {
-  top: 220px;
-  left: 25px;
-  font-size: 30px;
-}
-.commentjouer {
-  position: absolute;
-  top: 275px;
-  right: 200px;
+  color: #fab610;
 }

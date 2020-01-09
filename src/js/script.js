@@ -1,5 +1,6 @@
 let beer;
 let live = 0;
+let countScore = 0;
 
 function end() {
   let credits = document.querySelector(".credits");
@@ -56,7 +57,6 @@ function removeLive() {
   let hearts = document.querySelector(".divHeart");
   live++;
   hearts.removeChild(hearts.childNodes[live]);
-  console.log(hearts);
 
   if (hearts.childElementCount === 0) {
     oxo.screens.loadScreen("end", end);
@@ -76,11 +76,15 @@ function createtable(x, y) {
     appendTo: ".frame"
   });
 }
+// function getScore() {
 
+//   return score;
+// }
 function addTable() {
   let table = createtable(50, 950);
 
   oxo.elements.onCollisionWithElement(beer, table, function() {
+    countScore += 1;
     touch = true;
     resetBeerPosition();
     addScorePoint();
@@ -115,27 +119,26 @@ function createMen(x, y) {
   });
 }
 function addMen() {
-  let men = createMen(280, 920);
-
-  oxo.elements.onCollisionWithElement(beer, men, function() {
-    touch = true;
-    resetBeerPosition();
-    addSoundImpact();
-    removeLive();
-  });
-
-  let moveIntervalMen = setInterval(function() {
-    oxo.animation.move(men, "left", 13, true);
-  }, 40);
-
-  oxo.elements.onLeaveScreenOnce(
-    men,
-    function() {
-      men.remove();
-      clearInterval(moveIntervalMen);
-    },
-    true
-  );
+  if (countScore >= 5) {
+    let men = createMen(280, 920);
+    let moveIntervalMen = setInterval(function() {
+      oxo.animation.move(men, "left", 13, true);
+    }, 40);
+    oxo.elements.onCollisionWithElement(beer, men, function() {
+      touch = true;
+      resetBeerPosition();
+      addSoundImpact();
+      removeLive();
+    });
+    oxo.elements.onLeaveScreenOnce(
+      men,
+      function() {
+        men.remove();
+        clearInterval(moveIntervalMen);
+      },
+      true
+    );
+  }
 }
 
 // add 5 point score when beer touch table
@@ -153,6 +156,7 @@ function score() {
 
 function game() {
   beer = document.querySelector(".beer");
+
   move();
   setInterval(() => {
     resetBeerPosition();
@@ -162,17 +166,16 @@ function game() {
   setInterval(addTable, 3000);
 
   ifLeaveScreen();
-  setInterval(() => {
-    addMen();
-  }, 1000);
+  setInterval(addMen, 1000);
 }
 
-oxo.inputs.listenKeyOnce("enter", function() {
-  oxo.screens.loadScreen("game", game);
-});
+oxo.screens.loadScreen("home", function() {
+  let howto = document.querySelector(".howto");
+  howto.addEventListener("click", function() {
+    oxo.screens.loadScreen("howtoplay");
+  });
 
-// document.querySelector(".divHeart .heart" + `${i}`);
-// function getScore() {
-//   score = document.querySelector(".score");
-//   oxo.player.getScore();
-// }
+  oxo.inputs.listenKeyOnce("enter", function() {
+    oxo.screens.loadScreen("game", game);
+  });
+});
