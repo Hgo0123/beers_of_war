@@ -2,6 +2,11 @@
 
 @import "global/layout";
 
+@font-face {
+  font-family: "venture";
+  src: url("./../3Dventure.ttf");
+}
+
 //  GAME.html
 
 div.frame {
@@ -12,10 +17,18 @@ div.frame {
   margin-top: 50px;
   overflow: hidden;
   position: relative;
-  background-image: url("/images/Floor2.png");
-  background-size: 190%;
-  background-position: center;
+  background-image: url("/images/PlaygroundDefinitive.png");
+
   .beer {
+    width: 45px;
+    height: 45px;
+    position: absolute;
+    bottom: 70px;
+    left: 460px;
+    background-image: url("/images/biere.png");
+    transition: 0.3s ease-in;
+  }
+  .tomato {
     width: 45px;
     height: 45px;
     position: absolute;
@@ -35,38 +48,42 @@ div.frame {
     background-image: url("/images/SmallTable&Character1.png");
   }
   .men {
-    width: 128px;
-    height: 220px;
-    background-image: url("/images/RightCharacter.png");
+    width: 34px;
+    height: 83px;
+    background-image: url("/images/body.png");
     position: absolute;
     top: 250px;
     left: 1000px;
   }
 }
 
-// .anim {
-//   animation: glisse 2.5s infinite alternate linear;
-// }
-
-// @keyframes glisse {
-//   0% {
-//     transform: rotate(-60deg) translateX(-90px);
-//   }
-//   100% {
-//     transform: rotate(60deg) translateX(90px);
-//   }
-// }
-
 .score {
-  font-size: 22px;
+  color: white;
+  font-weight: bold;
+  font-size: 38px;
   position: absolute;
-  top: 0px;
-  left: 10px;
+  top: 10px;
+  left: 20px;
 }
 
 // HOME.html
 
-.homepage {
-  width: 100vw;
-  height: 100vh;
+.home {
+  .homepage {
+    width: 960px;
+    height: 600px;
+    border: 3px solid black;
+    margin: auto;
+    margin-top: 50px;
+    overflow: hidden;
+    position: relative;
+    background-image: url("./../images/FloorPlaygroundDefinitive.png");
+  }
+  h1 {
+    color: #fadc10;
+    font-family: "venture";
+    font-size: 82px;
+    text-align: center;
+    -webkit-text-stroke: 3px black;
+  }
 }
