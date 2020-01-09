@@ -3,6 +3,11 @@ let live = 0;
 let countScore = 0;
 
 function end() {
+  function addSoundLose() {
+    soundLose = document.getElementById("lose");
+    soundLose.play();
+  }
+  addSoundLose();
   let credits = document.querySelector(".credits");
   credits.addEventListener("click", function() {
     oxo.screens.loadScreen("credit");
@@ -49,10 +54,12 @@ function addSoundOrder() {
   soundOrder = document.getElementById("sound");
   soundOrder.play();
 }
+
 function addSoundImpact() {
   soundImpact = document.getElementById("impact");
   soundImpact.play();
 }
+
 function removeLive() {
   let hearts = document.querySelector(".divHeart");
   live++;
@@ -119,7 +126,7 @@ function createMen(x, y) {
   });
 }
 function addMen() {
-  if (countScore >= 5) {
+  if (countScore >= 1) {
     let men = createMen(280, 920);
     let moveIntervalMen = setInterval(function() {
       oxo.animation.move(men, "left", 13, true);
