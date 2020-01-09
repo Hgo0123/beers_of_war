@@ -169,13 +169,13 @@ function game() {
   setInterval(addMen, 1000);
 }
 
-oxo.screens.loadScreen("home", function() {
-  let howto = document.querySelector(".howto");
-  howto.addEventListener("click", function() {
-    oxo.screens.loadScreen("howtoplay");
-  });
+// oxo.screens.loadScreen("home", function() {
+//   let howto = document.querySelector(".howto");
+//   howto.addEventListener("click", function() {
+//     oxo.screens.loadScreen("howtoplay");
+//   });
 
-  oxo.inputs.listenKeyOnce("enter", function() {
-    oxo.screens.loadScreen("game", game);
-  });
-});
+// oxo.inputs.listenKeyOnce("enter", function() {
+oxo.screens.loadScreen("end", end);
+// });
+// });

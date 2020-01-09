@@ -207,6 +207,18 @@ html {
   img {
     width: 250px;
     height: 250px;
+    animation: overthrow 3s infinite;
+  }
+  @keyframes overthrow {
+    0% {
+      transform: rotate(-40deg);
+    }
+    80% {
+      transform: rotate(60deg);
+    }
+    100% {
+      transform: rotate(60deg);
+    }
   }
 
   .restart {
