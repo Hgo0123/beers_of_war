@@ -97,57 +97,73 @@ div.frame {
     margin-top: 50px;
     overflow: hidden;
     position: relative;
-    background-image: url("./../images/FloorPlaygroundDefinitive.png");
+    background-color: #222222;
   }
   h1 {
     color: #fab610;
     font-family: "venture";
-    font-size: 80px;
+    font-size: 102px;
     text-align: center;
     -webkit-text-stroke: 3px black;
+    margin-top: 50px;
+  }
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    80% {
+      transform: rotate(360deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  .beer_home {
+    position: absolute;
+    left: 420px;
+    transform: rotate(360deg);
+    animation: rotate 2s infinite;
+  }
+  .howto {
+    font-size: 22px;
+    color: white;
+    position: absolute;
+    top: 520px;
+    left: 400px;
+    text-align: center;
+    text-decoration: underline;
   }
   p {
     position: absolute;
-    left: 23px;
-    top: 100px;
+    left: 20vh;
+    top: 275px;
     font-size: 24px;
-    line-height: 33px;
+    line-height: 36px;
     text-transform: uppercase;
     color: #ffffff;
     font-family: "vcr";
+    text-align: center;
   }
   .btn {
     position: absolute;
-    width: 220px;
-    height: 100px;
-    left: 380px;
+    width: 480px;
+    height: 50px;
+    left: 250px;
     top: 460px;
     border-radius: 8px;
     background-color: #fab610;
-  }
-  .para {
-    position: absolute;
-    left: 10px;
-    top: 15px;
-    font-size: 26px;
-    line-height: 1;
-    text-align: center;
-  }
-  .souris {
-    position: absolute;
-    left: 750px;
-    top: 240px;
-    width: 150px;
-  }
-  .howtoplay {
-    top: 220px;
-    left: 25px;
-    font-size: 30px;
-  }
-  .commentjouer {
-    position: absolute;
-    top: 275px;
-    right: 200px;
+
+    .para {
+      position: absolute;
+      width: 480px;
+      height: 50px;
+      left: 0px;
+      top: 0px;
+      font-size: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 }
 // END PAGE
@@ -299,4 +315,23 @@ html {
       margin-bottom: 20px;
     }
   }
+}
+
+//howtoplay.html
+
+.souris {
+  position: absolute;
+  left: 750px;
+  top: 240px;
+  width: 150px;
+}
+.howtoplay {
+  top: 220px;
+  left: 25px;
+  font-size: 30px;
+}
+.commentjouer {
+  position: absolute;
+  top: 275px;
+  right: 200px;
 }
