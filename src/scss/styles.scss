@@ -133,6 +133,9 @@ div.frame {
     text-align: center;
     text-decoration: underline;
   }
+  .howto:hover {
+    cursor: pointer;
+  }
   p {
     position: absolute;
     left: 20vh;
@@ -236,6 +239,9 @@ html {
     background-color: #222222;
     border: #222222;
   }
+  .credits:hover {
+    cursor: pointer;
+  }
 }
 
 // Credit.html
@@ -304,12 +310,6 @@ html {
 
     width: 65%;
 
-    // .container__design {
-    //   margin-right: 10px;
-    // }
-    // .container__codeur {
-    //   margin-left: 10px;
-    // }
     .title {
       font-size: 28px;
       margin-bottom: 20px;
