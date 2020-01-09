@@ -1,5 +1,15 @@
 let beer;
-let live = 5;
+let live = 0;
+
+function end() {
+  let credits = document.querySelector(".credits");
+  credits.addEventListener("click", function() {
+    oxo.screens.loadScreen("credit");
+  });
+  oxo.inputs.listenKeyOnce("enter", function() {
+    window.location.reload("game", game);
+  });
+}
 
 function move() {
   let mousedownTime;
@@ -8,14 +18,14 @@ function move() {
     mousedownTime = new Date().getTime();
   });
   beer.addEventListener("mouseup", function() {
-    const mouseupTime = new Date().getTime(),
+    const mouseupTime = new Date().getTime(), // calcule le temps d'appui de la souris
       timeDifference = (mouseupTime - mousedownTime) / 2; // transforme le temps d'appui en pixels
+
     if (timeDifference > 520) {
       oxo.animation.move(beer, "up", 520, true);
     } else {
       oxo.animation.move(beer, "up", timeDifference, true);
     }
-    console.log(timeDifference);
   });
 }
 
@@ -44,12 +54,12 @@ function addSoundImpact() {
 }
 function removeLive() {
   let hearts = document.querySelector(".divHeart");
-  live--;
-  hearts.removeChild(hearts.childNodes[0]);
+  live++;
+  hearts.removeChild(hearts.childNodes[live]);
   console.log(hearts);
 
-  if (hearts.childElementCount === 4) {
-    oxo.screens.loadScreen("end");
+  if (hearts.childElementCount === 0) {
+    oxo.screens.loadScreen("end", end);
   }
 }
 
@@ -110,7 +120,6 @@ function addMen() {
   oxo.elements.onCollisionWithElement(beer, men, function() {
     touch = true;
     resetBeerPosition();
-    removeScorePoint(5);
     addSoundImpact();
     removeLive();
   });

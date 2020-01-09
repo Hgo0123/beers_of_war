@@ -60,14 +60,18 @@ div.frame {
     left: 1000px;
   }
 }
-
 .score {
   color: white;
   font-weight: bold;
   font-size: 38px;
   position: absolute;
+  top: 8px;
+  left: 90px;
+}
+.dollar {
+  position: absolute;
   top: 10px;
-  left: 20px;
+  left: 10px;
 }
 .divHeart {
   display: flex;
@@ -98,7 +102,7 @@ div.frame {
   h1 {
     color: #fab610;
     font-family: "venture";
-    font-size: 90px;
+    font-size: 80px;
     text-align: center;
     -webkit-text-stroke: 3px black;
   }
@@ -106,12 +110,10 @@ div.frame {
     position: absolute;
     left: 23px;
     top: 100px;
-
-    font-size: 36px;
-    line-height: 46px;
+    font-size: 24px;
+    line-height: 33px;
     text-transform: uppercase;
     color: #ffffff;
-
     font-family: "vcr";
   }
   .btn {
@@ -134,13 +136,18 @@ div.frame {
   .souris {
     position: absolute;
     left: 750px;
-    top: 430px;
-    width: 100px;
+    top: 240px;
+    width: 150px;
   }
   .howtoplay {
-    top: 380px;
-    left: 680px;
+    top: 220px;
+    left: 25px;
     font-size: 30px;
+  }
+  .commentjouer {
+    position: absolute;
+    top: 275px;
+    right: 200px;
   }
 }
 // END PAGE
@@ -205,11 +212,91 @@ html {
   .credits {
     text-decoration: underline;
     position: absolute;
-    bottom: 20px;
+    bottom: 40px;
     right: 30px;
     color: white;
     font-family: "vcr";
-    color: white;
     font-size: 22px;
+    background-color: #222222;
+    border: #222222;
+  }
+}
+
+// Credit.html
+
+.frame__credit {
+  width: 960px;
+  height: 600px;
+  border: 1px solid black;
+  margin: auto;
+  margin-top: 50px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #030349;
+  position: relative;
+
+  hr {
+    color: white;
+    background-color: white;
+    width: 90%;
+    position: absolute;
+    top: 170px;
+    height: 2px;
+    border-radius: 50%;
+    opacity: 0.5;
+  }
+  .rightbeer {
+    position: absolute;
+    bottom: 30px;
+    right: 120px;
+  }
+  .leftbeer {
+    position: absolute;
+    bottom: 30px;
+    left: 120px;
+  }
+
+  .credit__picture {
+    background-image: url("/images/credit__picture.png");
+    position: absolute;
+    top: 20px;
+    width: 400px;
+    height: 146px;
+  }
+  .team {
+    text-align: center;
+    color: white;
+    font-family: "vcr";
+    font-size: 40px;
+    position: absolute;
+    top: 200px;
+    margin-top: 10px;
+  }
+  .container {
+    text-transform: uppercase;
+    font-family: "vcr";
+    font-size: 26px;
+    line-height: 36px;
+    position: absolute;
+    top: 270px;
+    left: 200px;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+
+    width: 65%;
+
+    // .container__design {
+    //   margin-right: 10px;
+    // }
+    // .container__codeur {
+    //   margin-left: 10px;
+    // }
+    .title {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
   }
 }
