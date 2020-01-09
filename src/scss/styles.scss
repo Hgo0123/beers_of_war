@@ -6,13 +6,17 @@
   font-family: "venture";
   src: url("./../3Dventure.ttf");
 }
+@font-face {
+  font-family: "vcr";
+  src: url("/VCR_OSD_MONO_1.001.ttf");
+}
 
 //  GAME.html
 
 div.frame {
   width: 960px;
   height: 600px;
-  border: 3px solid black;
+  border: 5px solid black;
   margin: auto;
   margin-top: 50px;
   overflow: hidden;
@@ -80,10 +84,50 @@ div.frame {
     background-image: url("./../images/FloorPlaygroundDefinitive.png");
   }
   h1 {
-    color: #fadc10;
+    color: #fab610;
     font-family: "venture";
-    font-size: 82px;
+    font-size: 90px;
     text-align: center;
     -webkit-text-stroke: 3px black;
+  }
+  p {
+    position: absolute;
+    left: 23px;
+    top: 100px;
+
+    font-size: 36px;
+    line-height: 46px;
+    text-transform: uppercase;
+    color: #ffffff;
+
+    font-family: "vcr";
+  }
+  .btn {
+    position: absolute;
+    width: 220px;
+    height: 100px;
+    left: 380px;
+    top: 460px;
+    border-radius: 8px;
+    background-color: #fab610;
+  }
+  .para {
+    position: absolute;
+    left: 10px;
+    top: 15px;
+    font-size: 26px;
+    line-height: 1;
+    text-align: center;
+  }
+  .souris {
+    position: absolute;
+    left: 750px;
+    top: 430px;
+    width: 100px;
+  }
+  .howtoplay {
+    top: 380px;
+    left: 680px;
+    font-size: 30px;
   }
 }
