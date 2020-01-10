@@ -3,11 +3,6 @@ let live = 0;
 let countScore = 0;
 
 function end() {
-  function addSoundLose() {
-    soundLose = document.getElementById("lose");
-    soundLose.play();
-  }
-  addSoundLose();
   let credits = document.querySelector(".credits");
   credits.addEventListener("click", function() {
     oxo.screens.loadScreen("credit");
