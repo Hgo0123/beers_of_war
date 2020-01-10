@@ -121,7 +121,7 @@ function createMen(x, y) {
   });
 }
 function addMen() {
-  if (countScore >= 1) {
+  if (countScore >= 2) {
     let men = createMen(280, 920);
     let moveIntervalMen = setInterval(function() {
       oxo.animation.move(men, "left", 13, true);
