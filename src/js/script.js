@@ -81,14 +81,14 @@ function createtable(x, y) {
 function nextlevel() {
   var level = document.querySelectorAll(".level");
 
-  if (countScore === 3) {
+  if (countScore === 5) {
     level[0].classList.add("appear");
   }
-  if (countScore === 5) {
+  if (countScore === 10) {
     level[1].classList.add("appear");
   }
-  if (countScore === 10) {
-    level[3].classList.add("appear");
+  if (countScore === 15) {
+    level[2].classList.add("appear");
   }
 }
 
@@ -104,20 +104,31 @@ function addTable() {
     addSoundOrder();
   });
 
-  let moveInterval = setInterval(function() {
-    oxo.animation.move(table, "left", 10, true);
-  }, 60);
-  //   oxo.animation.move(table, "left", 10, true);
-  // }, 15);
-
-  oxo.elements.onLeaveScreenOnce(
-    table,
-    function() {
-      table.remove();
-      clearInterval(moveInterval);
-    },
-    true
-  );
+  if (countScore >= 5) {
+    let moveInterval = setInterval(function() {
+      oxo.animation.move(table, "left", 10, true);
+    }, 20);
+    oxo.elements.onLeaveScreenOnce(
+      table,
+      function() {
+        table.remove();
+        clearInterval(moveInterval);
+      },
+      true
+    );
+  } else {
+    let moveInterval = setInterval(function() {
+      oxo.animation.move(table, "left", 10, true);
+    }, 60);
+    oxo.elements.onLeaveScreenOnce(
+      table,
+      function() {
+        table.remove();
+        clearInterval(moveInterval);
+      },
+      true
+    );
+  }
 }
 
 function createMen(x, y) {
@@ -133,48 +144,59 @@ function createMen(x, y) {
     appendTo: ".frame"
   });
 }
+function moveMen() {
+  if (countScore >= 5) {
+    var men = createMen(220, 920);
+  } else {
+    var men = createMen(280, 920);
+  }
+  let moveIntervalMen = setInterval(function() {
+    oxo.animation.move(men, "left", 13, true);
+  }, 40);
+  oxo.elements.onLeaveScreenOnce(
+    men,
+    function() {
+      men.remove();
+      clearInterval(moveIntervalMen);
+    },
+    true
+  );
+}
+function moveMenPlus() {
+  let men = createMen(350, 10);
+  let moveIntervalMen = setInterval(function() {
+    oxo.animation.move(men, "right", 13, true);
+  }, 40);
+  oxo.elements.onCollisionWithElement(beer, men, function() {
+    touch = true;
+    resetBeerPosition();
+    addSoundImpact();
+    removeLive();
+  });
+  oxo.elements.onLeaveScreenOnce(
+    men,
+    function() {
+      men.remove();
+      clearInterval(moveIntervalMen);
+    },
+    true
+  );
+}
 
 function addMen() {
-  let men = createMen(280, 920);
-  if (countScore === 0) {
-    let moveIntervalMen = setInterval(function() {
-      oxo.animation.move(men, "left", 13, true);
-    }, 40);
-    //   oxo.animation.move(men, "left", 20, true);
-    // }, 60);
-    oxo.elements.onCollisionWithElement(beer, men, function() {
-      touch = true;
-      resetBeerPosition();
-      addSoundImpact();
-      removeLive();
-    });
-    oxo.elements.onLeaveScreenOnce(
-      men,
-      function() {
-        men.remove();
-        clearInterval(moveIntervalMen);
-      },
-      true
-    );
+  if (countScore >= 5) {
+    moveMen();
+    moveMenPlus();
   } else {
-    let moveIntervalMen = setInterval(function() {
-      oxo.animation.move(men, "left", 13, true);
-    }, 40);
-    oxo.elements.onCollisionWithElement(beer, men, function() {
-      touch = true;
-      resetBeerPosition();
-      addSoundImpact();
-      removeLive();
-    });
-    oxo.elements.onLeaveScreenOnce(
-      men,
-      function() {
-        men.remove();
-        clearInterval(moveIntervalMen);
-      },
-      true
-    );
+    moveMen();
   }
+  //   oxo.animation.move(men, "left", 20, true);
+  // }, 60);
+  oxo.elements.onCollisionWithElement(beer, men, function() {
+    resetBeerPosition();
+    addSoundImpact();
+    removeLive();
+  });
 }
 
 // add 5 point score when beer touch table
