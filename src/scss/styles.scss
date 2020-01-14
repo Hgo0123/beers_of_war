@@ -86,6 +86,44 @@ div.frame {
   margin-left: 10px;
 }
 
+.levelContainer {
+  .level {
+    font-family: "vcr";
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+    width: 200px;
+    height: 40px;
+    margin-top: 10px;
+    position: absolute;
+    bottom: -50px;
+    right: 375px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background-color: gray;
+  }
+
+  .appear {
+    animation: appear ease-out 4s;
+  }
+
+  @keyframes appear {
+    0% {
+      transform: translateY(100px);
+      opacity: 0.9;
+    }
+    50% {
+      opacity: 0.7;
+    }
+    100% {
+      transform: translateY(-400px);
+      opacity: 0;
+    }
+  }
+}
+
 // HOME.html
 
 .home {

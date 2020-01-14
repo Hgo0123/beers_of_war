@@ -78,16 +78,27 @@ function createtable(x, y) {
     appendTo: ".frame"
   });
 }
-// function getScore() {
+function nextlevel() {
+  var level = document.querySelectorAll(".level");
 
-//   return score;
-// }
+  if (countScore === 3) {
+    level[0].classList.add("appear");
+  }
+  if (countScore === 5) {
+    level[1].classList.add("appear");
+  }
+  if (countScore === 10) {
+    level[3].classList.add("appear");
+  }
+}
+
 function addTable() {
   let table = createtable(50, 950);
 
   oxo.elements.onCollisionWithElement(beer, table, function() {
     countScore += 1;
-    touch = true;
+    nextlevel();
+
     resetBeerPosition();
     addScorePoint();
     addSoundOrder();
@@ -96,6 +107,8 @@ function addTable() {
   let moveInterval = setInterval(function() {
     oxo.animation.move(table, "left", 10, true);
   }, 60);
+  //   oxo.animation.move(table, "left", 10, true);
+  // }, 15);
 
   oxo.elements.onLeaveScreenOnce(
     table,
@@ -120,9 +133,30 @@ function createMen(x, y) {
     appendTo: ".frame"
   });
 }
+
 function addMen() {
-  if (countScore >= 2) {
-    let men = createMen(280, 920);
+  let men = createMen(280, 920);
+  if (countScore === 0) {
+    let moveIntervalMen = setInterval(function() {
+      oxo.animation.move(men, "left", 13, true);
+    }, 40);
+    //   oxo.animation.move(men, "left", 20, true);
+    // }, 60);
+    oxo.elements.onCollisionWithElement(beer, men, function() {
+      touch = true;
+      resetBeerPosition();
+      addSoundImpact();
+      removeLive();
+    });
+    oxo.elements.onLeaveScreenOnce(
+      men,
+      function() {
+        men.remove();
+        clearInterval(moveIntervalMen);
+      },
+      true
+    );
+  } else {
     let moveIntervalMen = setInterval(function() {
       oxo.animation.move(men, "left", 13, true);
     }, 40);
@@ -160,6 +194,7 @@ function game() {
   beer = document.querySelector(".beer");
 
   move();
+
   setInterval(() => {
     resetBeerPosition();
   }, 1000);
@@ -168,7 +203,7 @@ function game() {
   setInterval(addTable, 3000);
 
   ifLeaveScreen();
-  setInterval(addMen, 1000);
+  setInterval(addMen, 2000);
 }
 
 oxo.screens.loadScreen("home", function() {
